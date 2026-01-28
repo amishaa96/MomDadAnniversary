@@ -1,63 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Free Website</title>
+  <meta charset="UTF-8" />
+  <title>Happy 31st Anniversary Mom & Dad 💕</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
       margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #111;
-      color: white;
-      padding: 20px;
+      font-family: 'Segoe UI', cursive, sans-serif;
+      background: linear-gradient(to bottom, #fff1f5, #ffe4ec);
+      color: #444;
       text-align: center;
     }
-    section {
-      padding: 40px;
-      text-align: center;
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 30px 20px;
     }
-    footer {
-      background: #222;
-      color: #ccc;
-      padding: 10px;
-      text-align: center;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
+
+    h1 {
+      color: #d6336c;
+      font-size: 2.8rem;
+      margin-bottom: 10px;
     }
+
+    h2 {
+      color: #b83280;
+      font-weight: normal;
+      margin-bottom: 30px;
+    }
+
+    .heart {
+      font-size: 2rem;
+      margin: 10px 0 30px;
+    }
+
+    .reasons {
+      text-align: left;
+      background: #ffffffcc;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .reasons li {
+      font-size: 1.05rem;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
     button {
-      padding: 10px 20px;
-      background: #ff4500;
+      margin-top: 30px;
+      background: #ff85a2;
       border: none;
+      padding: 14px 28px;
+      font-size: 1rem;
       color: white;
-      font-size: 16px;
+      border-radius: 30px;
       cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      transition: transform 0.2s;
     }
+
     button:hover {
-      background: #e03e00;
+      transform: scale(1.05);
+      background: #ff6f91;
+    }
+
+    .song {
+      margin-top: 25px;
+      display: none;
+    }
+
+    iframe {
+      border-radius: 15px;
+      max-width: 100%;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: #777;
     }
   </style>
+
+  <script>
+    function toggleSong() {
+      const songDiv = document.getElementById("song");
+      songDiv.style.display = songDiv.style.display === "none" ? "block" : "none";
+    }
+  </script>
 </head>
+
 <body>
+  <div class="container">
+    <h1>Happy 31st Anniversary 💕</h1>
+    <h2>31 Reasons Why You Are the Best Parents</h2>
+    <div class="heart">💗💗💗</div>
 
-  <header>
-    <h1>Welcome to My Website 🚀</h1>
-    <p>Built for free using HTML</p>
-  </header>
+    <div class="reasons">
+      <ol>
+        <li>They genuinely care about one another</li>
+        <li>They choose each other every single day</li>
+        <li>They communicate even after disagreements</li>
+        <li>They show love through actions</li>
+        <li>They share the same core values</li>
+        <li>They plan for the future together</li>
+        <li>They enjoy simple moments together</li>
+        <li>They protect and support each other</li>
+        <li>They balance each other’s strengths and weaknesses</li>
+        <li>They’re comfortable being themselves together</li>
+        <li>They’ve grown together over time</li>
+        <li>They celebrate each other’s wins</li>
+        <li>They are patient with each other</li>
+        <li>They laugh together, even on hard days</li>
+        <li>They’ve built a home, not just a house</li>
+        <li>They know when something’s wrong without a word being said</li>
+        <li>They still show care in small, quiet ways</li>
+        <li>They share inside jokes</li>
+        <li>They make each other feel safe</li>
+        <li>They know each other’s routines by heart</li>
+        <li>They can sit in silence comfortably</li>
+        <li>They help each other without being asked</li>
+        <li>They turn a house into a home</li>
+        <li>They respect each other deeply</li>
+        <li>They stand by each other during tough times</li>
+        <li>They teach love through their example</li>
+        <li>They put family first</li>
+        <li>They forgive and move forward</li>
+        <li>They never stop caring</li>
+        <li>They make love look easy and real</li>
+        <li>They are each other’s constant</li>
+      </ol>
+    </div>
 
-  <section>
-    <h2>About Me</h2>
-    <p>This is my first free website.</p>
-    <button onclick="alert('Thanks for visiting!')">Click Me</button>
-  </section>
+    <button onclick="toggleSong()">Play Our Song 🎶</button>
 
-  <footer>
-    © 2026 My Website
-  </footer>
+    <div class="song" id="song">
+      <p><strong>Tumse Milke Aisa Laga 💕</strong></p>
+      <iframe width="560" height="315"
+        src="https://www.youtube.com/embed/cRzIqA83c8I"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
 
+    <footer>
+      Made with love by <strong>Amisha & Pranjal</strong> 💖
+    </footer>
+  </div>
 </body>
 </html>
