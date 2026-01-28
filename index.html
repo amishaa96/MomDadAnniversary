@@ -12,41 +12,65 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background: linear-gradient(135deg, #ffe6f0, #fff);
+      background: linear-gradient(135deg, #fde2ea, #fff);
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Floating hearts background */
+    /* ===== Subtle floating hearts ===== */
     .heart {
       position: absolute;
-      color: rgba(255, 105, 180, 0.4);
-      font-size: 20px;
+      width: 10px;
+      height: 10px;
+      background: rgba(255, 182, 193, 0.5);
+      transform: rotate(45deg);
       animation: floatUp linear infinite;
-      bottom: -50px;
+      bottom: -20px;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: rgba(255, 182, 193, 0.5);
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -5px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -5px;
+      top: 0;
     }
 
     @keyframes floatUp {
       from {
-        transform: translateY(0) scale(1);
-        opacity: 1;
+        transform: translateY(0) rotate(45deg);
+        opacity: 0.8;
       }
       to {
-        transform: translateY(-120vh) scale(1.5);
+        transform: translateY(-120vh) rotate(45deg);
         opacity: 0;
       }
     }
 
-    /* Header */
+    /* ===== Header ===== */
     .header {
       text-align: center;
-      padding: 40px 20px 20px;
+      padding: 40px 20px 10px;
+      position: relative;
+      z-index: 1;
     }
 
     .header h1 {
       font-size: 42px;
       margin: 0;
-      color: #d63384;
+      color: #c2185b;
     }
 
     .header p {
@@ -55,7 +79,7 @@
       margin-top: 8px;
     }
 
-    /* Grid */
+    /* ===== Grid ===== */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -90,12 +114,44 @@
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
     }
 
-    /* Footer */
+    /* ===== Music Section ===== */
+    .music {
+      text-align: center;
+      margin: 20px 0 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .music button {
+      background: #c2185b;
+      color: white;
+      border: none;
+      padding: 12px 26px;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(194, 24, 91, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .music button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(194, 24, 91, 0.4);
+    }
+
+    .player {
+      margin-top: 16px;
+      display: none;
+    }
+
+    /* ===== Footer ===== */
     .footer {
       text-align: center;
-      padding: 20px;
+      padding: 20px 10px 30px;
       color: #777;
       font-size: 14px;
+      position: relative;
+      z-index: 1;
     }
   </style>
 </head>
@@ -103,14 +159,12 @@
 
   <!-- Floating hearts -->
   <script>
-    const hearts = ["💖", "💗", "💘", "💝", "💞"];
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 35; i++) {
       const heart = document.createElement("div");
       heart.className = "heart";
-      heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 6 + Math.random() * 6 + "s";
-      heart.style.fontSize = 14 + Math.random() * 24 + "px";
+      heart.style.animationDuration = 10 + Math.random() * 10 + "s";
+      heart.style.width = heart.style.height = 6 + Math.random() * 8 + "px";
       document.body.appendChild(heart);
     }
   </script>
@@ -118,10 +172,10 @@
   <!-- Header -->
   <div class="header">
     <h1>Mahaveer & Anita 💍</h1>
-    <p>31 Reasons Why Their Love Is Truly Special 💞</p>
+    <p>31 Reasons Why Their Love Is Truly Special</p>
   </div>
 
-  <!-- Grid with all 31 reasons -->
+  <!-- Grid -->
   <div class="grid">
     <div class="box"><span>💖</span>They genuinely care about one another</div>
     <div class="box"><span>🤍</span>They choose each other every single day</div>
@@ -153,12 +207,32 @@
     <div class="box"><span>✨</span>They never stop caring</div>
     <div class="box"><span>💍</span>They make love look real</div>
     <div class="box"><span>🌈</span>They are each other’s forever</div>
-    <div class="box"><span>🌟</span>They inspire everyone around them with their love 💞</div>
+    <div class="box"><span>🌟</span>They inspire everyone around them with their love</div>
   </div>
 
-  <div class="footer">
-    Made with 💖 for Mahaveer & Anita
+  <!-- Music -->
+  <div class="music">
+    <button onclick="playSong()">▶ Play Our Song</button>
+    <div class="player" id="player">
+      <iframe width="300" height="170"
+        src="https://www.youtube.com/embed/cRzIqA83c8I?autoplay=1"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+    </div>
   </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    Made with love by Pranjal & Amisha 💕
+  </div>
+
+  <script>
+    function playSong() {
+      document.getElementById("player").style.display = "block";
+    }
+  </script>
 
 </body>
 </html>
