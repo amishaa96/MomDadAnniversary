@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Mahaveer & Anita 💖</title>
+
+  <!-- Soft romantic font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
     }
 
     body {
@@ -15,17 +18,18 @@
       background: linear-gradient(135deg, #fde2ea, #fff);
       overflow-x: hidden;
       position: relative;
+      font-family: "Poppins", sans-serif;
     }
 
-    /* ===== Subtle floating hearts ===== */
+    /* ===== Floating soft hearts ===== */
     .heart {
-      position: absolute;
+      position: fixed;
       width: 10px;
       height: 10px;
-      background: rgba(255, 182, 193, 0.5);
+      background: rgba(255, 182, 193, 0.45);
       transform: rotate(45deg);
-      animation: floatUp linear infinite;
-      bottom: -20px;
+      animation: float linear infinite;
+      z-index: 0;
     }
 
     .heart::before,
@@ -34,7 +38,7 @@
       position: absolute;
       width: 10px;
       height: 10px;
-      background: rgba(255, 182, 193, 0.5);
+      background: rgba(255, 182, 193, 0.45);
       border-radius: 50%;
     }
 
@@ -48,13 +52,13 @@
       top: 0;
     }
 
-    @keyframes floatUp {
+    @keyframes float {
       from {
-        transform: translateY(0) rotate(45deg);
-        opacity: 0.8;
+        transform: translate(0, 0) rotate(45deg);
+        opacity: 0.7;
       }
       to {
-        transform: translateY(-120vh) rotate(45deg);
+        transform: translate(var(--x), var(--y)) rotate(45deg);
         opacity: 0;
       }
     }
@@ -62,28 +66,30 @@
     /* ===== Header ===== */
     .header {
       text-align: center;
-      padding: 40px 20px 10px;
+      padding: 50px 20px 10px;
       position: relative;
       z-index: 1;
     }
 
     .header h1 {
-      font-size: 42px;
+      font-family: "Playfair Display", serif;
+      font-size: 46px;
       margin: 0;
       color: #c2185b;
+      font-weight: 600;
     }
 
     .header p {
       font-size: 18px;
       color: #555;
-      margin-top: 8px;
+      margin-top: 10px;
     }
 
     /* ===== Grid ===== */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
+      gap: 18px;
       padding: 30px;
       max-width: 1200px;
       margin: auto;
@@ -92,16 +98,16 @@
     }
 
     .box {
-      background: white;
-      padding: 16px 18px;
-      border-radius: 14px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 18px 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
       display: flex;
       align-items: center;
       gap: 12px;
       font-size: 15px;
       color: #333;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .box span {
@@ -111,13 +117,13 @@
 
     .box:hover {
       transform: translateY(-6px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
     }
 
-    /* ===== Music Section ===== */
+    /* ===== Music ===== */
     .music {
       text-align: center;
-      margin: 20px 0 10px;
+      margin: 20px 0;
       position: relative;
       z-index: 1;
     }
@@ -126,17 +132,16 @@
       background: #c2185b;
       color: white;
       border: none;
-      padding: 12px 26px;
+      padding: 12px 28px;
       border-radius: 30px;
       font-size: 16px;
       cursor: pointer;
-      box-shadow: 0 6px 16px rgba(194, 24, 91, 0.3);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 6px 18px rgba(194, 24, 91, 0.35);
+      transition: transform 0.2s ease;
     }
 
     .music button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(194, 24, 91, 0.4);
     }
 
     .player {
@@ -147,7 +152,7 @@
     /* ===== Footer ===== */
     .footer {
       text-align: center;
-      padding: 20px 10px 30px;
+      padding: 25px 10px 35px;
       color: #777;
       font-size: 14px;
       position: relative;
@@ -157,14 +162,37 @@
 </head>
 <body>
 
-  <!-- Floating hearts -->
+  <!-- Floating hearts script -->
   <script>
-    for (let i = 0; i < 35; i++) {
+    const heartCount = 45;
+
+    for (let i = 0; i < heartCount; i++) {
       const heart = document.createElement("div");
       heart.className = "heart";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 10 + Math.random() * 10 + "s";
-      heart.style.width = heart.style.height = 6 + Math.random() * 8 + "px";
+
+      const size = 6 + Math.random() * 8;
+      heart.style.width = heart.style.height = size + "px";
+
+      const startSide = Math.floor(Math.random() * 3);
+
+      if (startSide === 0) { // bottom
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.bottom = "-20px";
+        heart.style.setProperty("--x", (Math.random() * 100 - 50) + "px");
+        heart.style.setProperty("--y", "-120vh");
+      } else if (startSide === 1) { // left
+        heart.style.left = "-20px";
+        heart.style.top = Math.random() * 100 + "vh";
+        heart.style.setProperty("--x", "120vw");
+        heart.style.setProperty("--y", (Math.random() * -100) + "px");
+      } else { // right
+        heart.style.right = "-20px";
+        heart.style.top = Math.random() * 100 + "vh";
+        heart.style.setProperty("--x", "-120vw");
+        heart.style.setProperty("--y", (Math.random() * -100) + "px");
+      }
+
+      heart.style.animationDuration = 12 + Math.random() * 12 + "s";
       document.body.appendChild(heart);
     }
   </script>
@@ -212,9 +240,11 @@
 
   <!-- Music -->
   <div class="music">
-    <button onclick="playSong()">▶ Play Our Song</button>
+    <button onclick="document.getElementById('player').style.display='block'">
+      ▶ Play Our Song
+    </button>
     <div class="player" id="player">
-      <iframe width="300" height="170"
+      <iframe width="320" height="180"
         src="https://www.youtube.com/embed/cRzIqA83c8I?autoplay=1"
         frameborder="0"
         allow="autoplay; encrypted-media"
@@ -227,12 +257,6 @@
   <div class="footer">
     Made with love by Pranjal & Amisha 💕
   </div>
-
-  <script>
-    function playSong() {
-      document.getElementById("player").style.display = "block";
-    }
-  </script>
 
 </body>
 </html>
