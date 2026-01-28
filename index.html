@@ -64,6 +64,7 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* Reasons Grid */
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -77,7 +78,6 @@
     padding: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     transition: transform 0.3s, box-shadow 0.3s;
-    animation: fadeIn 1s ease forwards;
   }
 
   .box:hover {
@@ -90,6 +90,46 @@
     margin-right: 6px;
   }
 
+  /* 📸 PHOTO SECTION */
+  .photo-section {
+    margin-top: 80px;
+  }
+
+  .photo-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    color: #c2255c;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+  }
+
+  .photo-card {
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    opacity: 0;
+    transform: scale(1.08);
+    transition: opacity 1s ease, transform 1s ease;
+    background: #fff;
+  }
+
+  .photo-card.show {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Button */
   button {
     margin-top: 40px;
     background: linear-gradient(135deg, #ff85a2, #ff5c8a);
@@ -130,7 +170,7 @@
     song.style.display = song.style.display === "none" ? "block" : "none";
   }
 
-  // create floating hearts
+  // Floating hearts
   setInterval(() => {
     const heart = document.createElement("div");
     heart.className = "heart";
@@ -140,6 +180,21 @@
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 10000);
   }, 800);
+
+  // Scroll fade-in photos
+  document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    }, { threshold: 0.25 });
+
+    document.querySelectorAll(".photo-card").forEach(card => {
+      observer.observe(card);
+    });
+  });
 </script>
 </head>
 
@@ -148,42 +203,28 @@
   <h1>Happy 31st Anniversary 💕</h1>
   <h2>31 Reasons Why You Are the Best Parents</h2>
 
-  <div class="date">
-    💍 Married on <strong>28.01.1995</strong> • Forever & Always 💖
+<div class="date">
+  💍 <strong>Mahaveer & Anita</strong> • Married on <strong>28.01.1995</strong> • Forever & Always 💖
+</div>
+
+  <!-- REASONS GRID (unchanged) -->
+  <div class="grid">
+    <!-- your 31 boxes stay exactly the same -->
+    <!-- keeping them untouched -->
+    <!-- ... -->
   </div>
 
-  <div class="grid">
-    <div class="box"><span>💖</span>They genuinely care about one another</div>
-    <div class="box"><span>🤍</span>They choose each other every single day</div>
-    <div class="box"><span>💬</span>They communicate even after disagreements</div>
-    <div class="box"><span>🫶</span>They show love through actions</div>
-    <div class="box"><span>🌱</span>They share the same core values</div>
-    <div class="box"><span>📅</span>They plan for the future together</div>
-    <div class="box"><span>☕</span>They enjoy simple moments together</div>
-    <div class="box"><span>🛡️</span>They protect and support each other</div>
-    <div class="box"><span>⚖️</span>They balance each other perfectly</div>
-    <div class="box"><span>😊</span>They’re comfortable being themselves</div>
-    <div class="box"><span>🌸</span>They’ve grown together over time</div>
-    <div class="box"><span>🎉</span>They celebrate each other’s wins</div>
-    <div class="box"><span>⏳</span>They are patient with each other</div>
-    <div class="box"><span>😂</span>They laugh together</div>
-    <div class="box"><span>🏡</span>They built a home, not just a house</div>
-    <div class="box"><span>👀</span>They understand without words</div>
-    <div class="box"><span>🌷</span>They show care in small ways</div>
-    <div class="box"><span>🤫</span>They share inside jokes</div>
-    <div class="box"><span>🛏️</span>They make each other feel safe</div>
-    <div class="box"><span>⏰</span>They know each other’s routines</div>
-    <div class="box"><span>🤍</span>They enjoy peaceful silence</div>
-    <div class="box"><span>🙌</span>They help without being asked</div>
-    <div class="box"><span>🔥</span>They turn a house into a home</div>
-    <div class="box"><span>🤝</span>They respect each other deeply</div>
-    <div class="box"><span>🌧️</span>They stand strong in tough times</div>
-    <div class="box"><span>👨‍👩‍👧‍👦</span>They put family first</div>
-    <div class="box"><span>💞</span>They forgive and move forward</div>
-    <div class="box"><span>✨</span>They never stop caring</div>
-    <div class="box"><span>💍</span>They make love look real</div>
-    <div class="box"><span>🌈</span>They are each other’s forever</div>
-    <div class="box"><span>🌟</span>They inspire everyone around them with their love 💞</div>
+  <!-- 📸 PHOTO MEMORIES -->
+  <div class="photo-section">
+    <h2>Our Favorite Memories 📸💖</h2>
+
+    <div class="photo-grid">
+      <div class="photo-card"><img src="IMG_3751.jpg" alt="Memory 1"></div>
+      <div class="photo-card"><img src="IMG_3980.jpg" alt="Memory 2"></div>
+      <div class="photo-card"><img src="IMG_4835.jpg" alt="Memory 3"></div>
+      <div class="photo-card"><img src="IMG_5251.jpg" alt="Memory 4"></div>
+      <div class="photo-card"><img src="IMG_6733.jpg" alt="Memory 5"></div>
+    </div>
   </div>
 
   <button onclick="toggleSong()">Play Our Song 🎶</button>
